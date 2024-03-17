@@ -1,14 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic; // For List<>
 using UnityEngine.UI; // For Text class
+using TMPro;
 
 public class Mover : MonoBehaviour
 {
+    
     public float speed = 5.0f; // Movement speed
     public float collectDistance = 0.5f; // Distance for collection raycast
     public List<GameObject> collectedObjects = new List<GameObject>(); // Collection to store collected objects
-    public Text scoreText; // Reference to UI Text object for displaying score
+    public TextMeshProUGUI scoreText; // Reference to UI Text object for displaying score
     private int score = 0; // Stores current score
+   // private Rigidbody2D rb;
+
+   //void Start()
+    //{
+      //  rb = GetComponent<Rigidbody2D>();
+    //}
+
 
     void Update()
     {
@@ -51,4 +60,14 @@ public class Mover : MonoBehaviour
             scoreText.text = "Score: " + score;
         }
     }
+
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+       // if (collision.gameObject.CompareTag("Wall"))
+        //{
+          //  rb.velocity = Vector2.zero;
+            //transform.position = collision.GetContact(0).point;
+
+      //  }
+    //}
 }
