@@ -4,9 +4,8 @@ public class Destroyer : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player") // Assuming character has "Mover" tag
+        if (other.CompareTag("Player"))
         {
-            // Destroy the object
             Destroy(gameObject);
         }
     }
