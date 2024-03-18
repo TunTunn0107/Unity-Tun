@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Obstacle
+  - Document
   layers:
   - Default
   - TransparentFX
