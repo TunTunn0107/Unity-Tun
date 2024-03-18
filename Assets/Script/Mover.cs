@@ -9,6 +9,9 @@ public class Mover : MonoBehaviour
     public List<GameObject> collectedObjects = new List<GameObject>();
     public Text scoreText;
     private int score = 0;
+    private bool hasKey = false; // Flag to track whether the player has collected the key
+
+    public Door door; // Reference to the door GameObject
 
     void Update()
     {
@@ -28,10 +31,10 @@ public class Mover : MonoBehaviour
         UpdateScoreText();
     }
 
-    void CollectObject(GameObject collectible)
+    public void CollectKey()
     {
-        collectedObjects.Add(collectible);
-        score++;
+        hasKey = true;
+        // Optionally, update UI or perform other actions when the key is collected
     }
 
     void UpdateScoreText()
@@ -39,6 +42,19 @@ public class Mover : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Door") && hasKey)
+        {
+            // Open the door if the player has the key
+            Door doorScript = other.GetComponent<Door>();
+            if (doorScript != null)
+            {
+                doorScript.OpenDoor();
+            }
         }
     }
 }
