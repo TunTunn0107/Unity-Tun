@@ -8,14 +8,23 @@ public class Mover : MonoBehaviour
     public float collectDistance = 0.5f;
     public List<GameObject> collectedObjects = new List<GameObject>();
     public Text scoreText;
-    private int score = 0;
+    public GameObject keyPrefab; // Reference to the key prefab
+    private int totalDocuments = 5; // Total number of documents to collect
+    private int collectedDocuments = 0; // Number of documents collected
     private GameObject key; // Reference to the key GameObject
     private bool hasKey = false; // Flag to track whether the player has collected the key
+
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
 
     // Method to check if the player has collected the key
     public bool HasKey()
     {
         return hasKey;
+    }
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
     }
 
     void Update()
@@ -39,26 +48,45 @@ public class Mover : MonoBehaviour
         {
             key.transform.position = transform.position; // Make the key follow the player
         }
+
+        // Flip character sprite if moving left or right
+        if (movement.x != 0)
+        {
+            spriteRenderer.flipX = movement.x < 0; // Flip character sprite if moving left
+        }
     }
 
-    void CollectObject(GameObject collectible)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collectible.CompareTag("Key"))
+        if (other.CompareTag("Document"))
         {
-            hasKey = true; // Set hasKey flag to true when the player collects the key
-            key = collectible; // Assign the key GameObject to the key variable
-            collectible.SetActive(false); // Deactivate the key GameObject
+            collectedDocuments++;
+            Destroy(other.gameObject); // Destroy the document object
+            CheckDocumentsCollected();
         }
+    }
 
-        collectedObjects.Add(collectible);
-        score++;
+    void CheckDocumentsCollected()
+    {
+        if (collectedDocuments == totalDocuments && !hasKey)
+        {
+            SpawnKey(); // Spawn the key if all documents are collected and key doesn't exist
+        }
+    }
+
+    void SpawnKey()
+    {
+        if (keyPrefab != null && key == null)
+        {
+            key = Instantiate(keyPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     void UpdateScoreText()
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + score;
+            scoreText.text = "Documents Collected: " + collectedDocuments + " / " + totalDocuments;
         }
     }
 }

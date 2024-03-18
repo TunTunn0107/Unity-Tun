@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Documentmover : MonoBehaviour
 {
-    private float radius = 0.8f;
+    private float radius = 0.4f;
     private float speed = 0.5f;
     private Vector2 basestartpoint;
     private Vector2 destination;
