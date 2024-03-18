@@ -1,26 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public DoorOpen doorOpen;
+    public DoorOpen doorOpen; // Reference to the DoorOpen script associated with this key
+    public int keysNeeded = 1; // Number of keys needed to open the door
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        doorOpen.gotKey = true;
-        doorOpen.key.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            // Check if the player can collect this key (key is active and not already collected)
+            if (gameObject.activeSelf && !doorOpen.HasKey())
+            {
+                doorOpen.CollectKey(keysNeeded); // Notify the door that a key has been collected
+                gameObject.SetActive(false); // Deactivate the key
+            }
+        }
     }
 }

@@ -1,27 +1,32 @@
 using UnityEngine;
 
-public class Documentmover : MonoBehaviour
+public class DocumentMover : MonoBehaviour
 {
-    private float radius = 0.4f;
+    public float minX = -5f; // Minimum X coordinate of the bounds
+    public float maxX = 5f; // Maximum X coordinate of the bounds
+    public float minY = -5f; // Minimum Y coordinate of the bounds
+    public float maxY = 5f; // Maximum Y coordinate of the bounds
+
+    private float radius = 0.8f;
     private float speed = 0.5f;
-    private Vector2 basestartpoint;
+    private Vector2 baseStartPosition;
     private Vector2 destination;
     private Vector2 start;
     private float progress = 0.0f;
 
     private float rotOffset = 90f;
-    private float RotationSpeed = 3f;
+    private float rotationSpeed = 3f;
 
-    void Start()
+    private void Start()
     {
         start = transform.localPosition;
-        basestartpoint = transform.localPosition;
+        baseStartPosition = transform.localPosition;
         progress = 0.0f;
 
         PickNewRandomDestination();
     }
 
-    void Update()
+    private void Update()
     {
         bool reached = false;
         progress += speed * Time.deltaTime;
@@ -41,20 +46,27 @@ public class Documentmover : MonoBehaviour
             progress = 0.0f;
         }
 
-        RotateGameObject(destination, RotationSpeed, rotOffset);
+        RotateGameObject(destination, rotationSpeed, rotOffset);
+
+        // Ensure the document stays within the bounds
+        Vector3 newPosition = transform.localPosition;
+        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+        newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
+        transform.localPosition = newPosition;
     }
 
-    void PickNewRandomDestination()
+    private void PickNewRandomDestination()
     {
-        destination = Random.insideUnitCircle * radius + basestartpoint;
+        // Generate random destination within the bounds
+        destination = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 
-    private void RotateGameObject(Vector2 destination, float RotationSpeed, float offset)
+    private void RotateGameObject(Vector2 destination, float rotationSpeed, float offset)
     {
         Vector3 target = destination;
-        Vector3 dir = target - transform.position;
+        Vector3 dir = target - (Vector3)transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, RotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 }

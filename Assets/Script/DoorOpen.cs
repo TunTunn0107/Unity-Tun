@@ -1,36 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
-    public GameObject key;
+    public GameObject teleportDestination; // Destination to teleport to
+    public int keysRequired = 1; // Number of keys required to open the door
+    private int keysCollected = 0; // Number of keys collected for this door
 
-    public bool gotKey = false;
-
-    public Transform teleportDestination;
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if(gotKey == true)
+        if (other.CompareTag("Player"))
         {
-            other.transform.position = teleportDestination.position;
+            // Check if the player has collected enough keys to open the door
+            if (keysCollected >= keysRequired)
+            {
+                // Teleport the player to the destination
+                other.transform.position = teleportDestination.transform.position;
+            }
         }
-        
     }
 
+    // Method to notify the door that a key has been collected
+    public void CollectKey(int keysNeeded)
+    {
+        keysCollected += keysNeeded;
+    }
 
+    // Method to check if the door has enough keys to open
+    public bool HasKey()
+    {
+        return keysCollected >= keysRequired;
+    }
 }

@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
-  - InvisibleWall
   - Door
+  - Obstacle
   layers:
   - Default
   - TransparentFX
