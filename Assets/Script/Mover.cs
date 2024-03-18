@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // Added for scene management
 
 public class Mover : MonoBehaviour
 {
@@ -12,9 +11,11 @@ public class Mover : MonoBehaviour
     private int score = 0;
     private bool hasKey = false; // Flag to track whether the player has collected the key
 
-    public string sceneToLoad; // Name of the scene to load
-    public GameObject door; // Reference to the door GameObject
-    public GameObject key; // Reference to the key GameObject
+    // Method to check if the player has collected the key
+    public bool HasKey()
+    {
+        return hasKey;
+    }
 
     void Update()
     {
@@ -34,11 +35,16 @@ public class Mover : MonoBehaviour
         UpdateScoreText();
     }
 
-    public void CollectKey()
+    void CollectObject(GameObject collectible)
     {
-        hasKey = true;
-        key.SetActive(false); // Deactivate the key GameObject
-        // Optionally, update UI or perform other actions when the key is collected
+        if (collectible.CompareTag("Key"))
+        {
+            hasKey = true; // Set hasKey flag to true when the player collects the key
+            collectible.SetActive(false); // Deactivate the key GameObject
+        }
+
+        collectedObjects.Add(collectible);
+        score++;
     }
 
     void UpdateScoreText()
@@ -46,24 +52,6 @@ public class Mover : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Door") && hasKey)
-        {
-            // Open the door if the player has the key
-            door.SetActive(false); // Deactivate the door GameObject
-            LoadNextScene();
-        }
-    }
-
-    void LoadNextScene()
-    {
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
