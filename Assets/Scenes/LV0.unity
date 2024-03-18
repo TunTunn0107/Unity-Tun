@@ -343,7 +343,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1.17, y: 1.6}
   m_EdgeRadius: 0
 --- !u!1 &426601851
 GameObject:
@@ -529,6 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767968492}
   - component: {fileID: 767968491}
+  - component: {fileID: 767968493}
   m_Layer: 0
   m_Name: 1 PC
   m_TagString: Untagged
@@ -603,6 +604,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767968493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767968490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcde71c33184044ea322a0441d5b95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBuildIndex: 0
 --- !u!1001 &813976720
 PrefabInstance:
   m_ObjectHideFlags: 0
