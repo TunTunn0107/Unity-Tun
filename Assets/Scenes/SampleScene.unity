@@ -582,7 +582,6 @@ MonoBehaviour:
   collectedObjects:
   - {fileID: 898832819}
   scoreText: {fileID: 0}
-  door: {fileID: 0}
 --- !u!212 &1838990063
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -880,6 +879,10 @@ PrefabInstance:
     - target: {fileID: 7701466699986149146, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
       propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701466699986149146, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
