@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Added for scene management
 
 public class Mover : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class Mover : MonoBehaviour
     private int score = 0;
     private bool hasKey = false; // Flag to track whether the player has collected the key
 
-    public Door door; // Reference to the door GameObject
+    public string sceneToLoad; // Name of the scene to load
+    public GameObject door; // Reference to the door GameObject
+    public GameObject key; // Reference to the key GameObject
 
     void Update()
     {
@@ -34,6 +37,7 @@ public class Mover : MonoBehaviour
     public void CollectKey()
     {
         hasKey = true;
+        key.SetActive(false); // Deactivate the key GameObject
         // Optionally, update UI or perform other actions when the key is collected
     }
 
@@ -50,11 +54,16 @@ public class Mover : MonoBehaviour
         if (other.CompareTag("Door") && hasKey)
         {
             // Open the door if the player has the key
-            Door doorScript = other.GetComponent<Door>();
-            if (doorScript != null)
-            {
-                doorScript.OpenDoor();
-            }
+            door.SetActive(false); // Deactivate the door GameObject
+            LoadNextScene();
+        }
+    }
+
+    void LoadNextScene()
+    {
+        if (!string.IsNullOrEmpty(sceneToLoad))
+        {
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
