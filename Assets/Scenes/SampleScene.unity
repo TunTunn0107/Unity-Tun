@@ -241,6 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 603180328}
   - component: {fileID: 603180327}
+  - component: {fileID: 603180329}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -310,11 +311,56 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.9492228, y: -1.6686139, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 5.85, y: 5.85, z: 5.85}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &603180329
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603180326}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.28, y: 0.28}
+    newSize: {x: 0.28, y: 0.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.25}
+  m_EdgeRadius: 0
 --- !u!1 &898832819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8826917047990028658, guid: 05c5deca62254254480a4435cbb73f57, type: 3}
@@ -518,6 +564,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c5deca62254254480a4435cbb73f57, type: 3}
+--- !u!1 &1524479128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4616099518603413654, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+  m_PrefabInstance: {fileID: 1952905922011161437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1524479132
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524479128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.89, y: 1.5}
+    newSize: {x: 0.89, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.89, y: 1.5}
+  m_EdgeRadius: 0
 --- !u!1 &1838990058
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +660,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1838990061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +677,7 @@ MonoBehaviour:
   collectDistance: 0.5
   collectedObjects:
   - {fileID: 898832819}
+  - {fileID: 1331476768}
   scoreText: {fileID: 0}
 --- !u!212 &1838990063
 SpriteRenderer:
@@ -828,9 +925,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3924944106347961405, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1838990058}
+    - target: {fileID: 3924944106347961405, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: sceneBuildIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4616099518603413654, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616099518603413654, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -838,7 +959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.52
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6703627200209592348, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -887,7 +1008,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4616099518603413654, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1524479132}
   m_SourcePrefab: {fileID: 100100000, guid: faced7ad6f37491479cdee19baba5bf6, type: 3}
 --- !u!1001 &5872118629758534715
 PrefabInstance:

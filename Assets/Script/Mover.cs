@@ -9,6 +9,7 @@ public class Mover : MonoBehaviour
     public List<GameObject> collectedObjects = new List<GameObject>();
     public Text scoreText;
     private int score = 0;
+    private GameObject key; // Reference to the key GameObject
     private bool hasKey = false; // Flag to track whether the player has collected the key
 
     // Method to check if the player has collected the key
@@ -33,6 +34,11 @@ public class Mover : MonoBehaviour
         transform.position += movement * speed * Time.deltaTime;
 
         UpdateScoreText();
+
+        if (key != null && hasKey)
+        {
+            key.transform.position = transform.position; // Make the key follow the player
+        }
     }
 
     void CollectObject(GameObject collectible)
@@ -40,6 +46,7 @@ public class Mover : MonoBehaviour
         if (collectible.CompareTag("Key"))
         {
             hasKey = true; // Set hasKey flag to true when the player collects the key
+            key = collectible; // Assign the key GameObject to the key variable
             collectible.SetActive(false); // Deactivate the key GameObject
         }
 
