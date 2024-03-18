@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class DoorOpen : MonoBehaviour
 {
-    public DoorOpen doorOpen;
+    public GameObject key;
+
+    public bool gotKey = false;
+
+    public Transform teleportDestination;
 
     // Start is called before the first frame update
     void Start()
@@ -15,12 +19,18 @@ public class Key : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        doorOpen.gotKey = true;
-        doorOpen.key.SetActive(false);
+        if(gotKey == true)
+        {
+            other.transform.position = teleportDestination.position;
+        }
+        
     }
+
+
 }
