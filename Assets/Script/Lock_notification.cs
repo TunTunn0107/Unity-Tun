@@ -17,10 +17,15 @@ public class Lock_notification : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") &&(.HasKey))
         {
             Notification.gameObject.SetActive(true);
             isNotified=true;
+        }
+
+        else
+        {
+            Notification.gameObject.SetActive(false)
         }
     }
 
