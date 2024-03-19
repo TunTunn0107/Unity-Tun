@@ -26,6 +26,7 @@ public class PCDocumentInteraction : MonoBehaviour
             if (documentManager != null && documentManager.AreAllDocumentsCollected())
             {
                 SceneManager.LoadScene(nextSceneName);
+                DontDestroyOnLoad(gameObject);
                 isNotified = true; 
             }
             else
