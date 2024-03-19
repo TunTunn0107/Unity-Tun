@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PC_Screen.unity
     guid: 0b4da9a5e1220ab4d92801650e03d4bf
+  - enabled: 1
+    path: Assets/Scenes/Green_PC_Screen.unity
+    guid: 5542a45483d45ed44a7356858d230155
   m_configObjects: {}
