@@ -7,9 +7,15 @@ public class PC : MonoBehaviour
 {
     // Create a public variable to store the name of the scene you want to transition to
     public string nextSceneName;
+    public bool isInteracted;
 
     //public CollectDocument collectedDocument;
     public CollectDocument[] collectibleDocuments;
+
+    void Start()
+    {
+        isInteracted = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,6 +26,7 @@ public class PC : MonoBehaviour
             {
                 // If all documents have been collected, transition to the next scene
                 SceneManager.LoadScene(nextSceneName);
+                isInteracted = true;
             }
         }
     }
