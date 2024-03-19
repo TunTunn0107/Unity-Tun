@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PC : MonoBehaviour
+public class PCDocumentInteraction : MonoBehaviour
 {
     public string nextSceneName;
     public CollectDocument[] collectibleDocuments;
     public bool isPCInterracted;
-    public bool isNotified; // Declare isNotified variable
+    public bool isNotified; 
 
     void Start()
     {
         isPCInterracted = false;
-        isNotified = false; // Initialize isNotified variable
+        isNotified = false; 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            isPCInterracted |= true;
+            isPCInterracted = true;
 
             DocumentManager documentManager = FindObjectOfType<DocumentManager>();
             if (documentManager != null && documentManager.AreAllDocumentsCollected())
             {
                 SceneManager.LoadScene(nextSceneName);
-                isNotified = true; // Set isNotified to true when all documents are collected
+                isNotified = true; 
+            }
+            else
+            {
+                isNotified = false; // Set isNotified to false if not all documents are collected
             }
         }
     }

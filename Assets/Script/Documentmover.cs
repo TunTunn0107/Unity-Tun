@@ -7,7 +7,7 @@ public class DocumentMover : MonoBehaviour
     public float minY = -5f; // Minimum Y coordinate of the bounds
     public float maxY = 5f; // Maximum Y coordinate of the bounds
 
-    private float radius = 0.8f;
+    //private float radius = 0.8f;
     private float speed = 0.5f;
     private Vector2 baseStartPosition;
     private Vector2 destination;
