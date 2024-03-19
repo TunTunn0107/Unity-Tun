@@ -30,4 +30,12 @@ public class DoorOpen : MonoBehaviour
     {
         return keysCollected >= keysRequired;
     }
+
+    // Method to open the door
+    public void OpenDoor()
+    {
+        // Implement your door opening logic here
+        // For example, you can play an animation, change the door's state, etc.
+        Debug.Log("Door opened!"); // Placeholder message
+    }
 }
