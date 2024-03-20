@@ -3,23 +3,26 @@ using UnityEngine;
 public class TargetObject : MonoBehaviour
 {
     public Sprite newSprite; // New sprite to set when all documents are dragged into this object
+    public GameObject newGameObject; // GameObject to activate when all documents are received
     public int requiredDocuments = 3; // Number of documents required to change the sprite
     private int documentsReceived = 0; // Number of documents dragged into this object
     private bool hasChangedSprite = false; // Flag to track whether sprite has been changed
 
-    private void OnTriggerEnter2D(Collider2D other)
+    // Method to increment documentsReceived and handle sprite change
+    public void ReceiveDocument()
     {
-        if (other.CompareTag("Document"))
+        documentsReceived++;
+        if (documentsReceived >= requiredDocuments && !hasChangedSprite)
         {
-            documentsReceived++;
-            Destroy(other.gameObject); // Destroy the document object once it's dragged into the target object
+            GetComponent<SpriteRenderer>().sprite = newSprite;
+            hasChangedSprite = true;
 
-            if (documentsReceived >= requiredDocuments && !hasChangedSprite)
+            // Activate the new GameObject
+            if (newGameObject != null)
             {
-                GetComponent<SpriteRenderer>().sprite = newSprite;
-                hasChangedSprite = true;
-                // Do any other actions you need when all documents are received and sprite is changed
+                newGameObject.SetActive(true);
             }
+            // Do any other actions you need when all documents are received and sprite is changed
         }
     }
 }
