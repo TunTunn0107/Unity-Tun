@@ -10,6 +10,7 @@ TagManager:
   - Notification_Point
   - TargetObject
   - Exit
+  - BlueDocument
   layers:
   - Default
   - TransparentFX
