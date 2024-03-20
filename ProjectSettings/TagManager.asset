@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Document
   - Notification_Point
+  - TargetObject
   layers:
   - Default
   - TransparentFX

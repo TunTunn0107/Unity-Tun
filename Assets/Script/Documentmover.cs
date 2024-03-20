@@ -7,6 +7,10 @@ public class DocumentMover : MonoBehaviour
     public float minY = -5f; // Minimum Y coordinate of the bounds
     public float maxY = 5f; // Maximum Y coordinate of the bounds
     public float speed = 0.5f; // Speed of movement, can be changed in the Inspector
+    public float rotationSpeed = 3f; // Speed of rotation, can be changed in the Inspector
+    public Sprite newSprite; // New sprite to set when object is dragged into another object
+    public GameObject targetObject; // Reference to the target object
+    public int maxDocuments = 3; // Maximum number of documents to be dragged into the target object
 
     private Vector2 baseStartPosition;
     private Vector2 destination;
@@ -14,9 +18,12 @@ public class DocumentMover : MonoBehaviour
     private float progress = 0.0f;
 
     private float rotOffset = 90f;
-    private float rotationSpeed = 3f;
 
     private bool isMoving = true; // Flag to control movement
+    private bool isDragging = false; // Flag to control dragging state
+    private bool canDrag = true; // Flag to control dragging availability
+
+    private int documentsInTarget = 0; // Number of documents dragged into the target object
 
     private void Start()
     {
@@ -29,7 +36,7 @@ public class DocumentMover : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving) return; // If not moving, return without updating
+        if (!isMoving || isDragging) return; // If not moving or dragging, return without updating
 
         bool reached = false;
         progress += speed * Time.deltaTime;
@@ -75,6 +82,48 @@ public class DocumentMover : MonoBehaviour
 
     private void OnMouseDown()
     {
-        isMoving = !isMoving;
+        if (!canDrag) return; // If dragging is disabled, return without updating
+
+        isMoving = false;
+        isDragging = true;
+        canDrag = true; // Disable dragging until mouse button is released
+    }
+
+    private void OnMouseDrag()
+    {
+        if (!isDragging) return;
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
+    }
+
+    private void OnMouseUp()
+    {
+        isMoving = true;
+        isDragging = false;
+        canDrag = true; // Enable dragging when mouse button is released
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!canDrag) return; // If dragging is disabled, return without updating
+
+        // Check if the object is being dragged into another object
+        if (isDragging && other.CompareTag("TargetObject"))
+        {
+            // Change the sprite of the current object
+            GetComponent<SpriteRenderer>().sprite = newSprite;
+            canDrag = false; // Disable dragging until mouse button is released
+
+            // Increment the count of documents in the target object
+            documentsInTarget++;
+
+            // Check if the maximum number of documents has been reached
+            if (documentsInTarget >= maxDocuments)
+            {
+                // Change the sprite of the target object
+                targetObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+            }
+        }
     }
 }
