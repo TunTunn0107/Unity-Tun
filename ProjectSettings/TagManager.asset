@@ -9,6 +9,7 @@ TagManager:
   - Document
   - Notification_Point
   - TargetObject
+  - Exit
   layers:
   - Default
   - TransparentFX
