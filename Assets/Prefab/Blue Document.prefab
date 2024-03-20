@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1455155372766119465}
   - component: {fileID: 4194879467185047268}
   - component: {fileID: 4348123488188928014}
-  - component: {fileID: 6947223798151889576}
   - component: {fileID: 1524828221905638327}
   m_Layer: 0
   m_Name: Blue Document
@@ -120,19 +119,6 @@ MonoBehaviour:
   rotationSpeed: 3
   newSprite: {fileID: 0}
   targetObject: {fileID: 0}
---- !u!114 &6947223798151889576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4777103119125548579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935885a1042600842922d2186c8bb8cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCollected: 0
 --- !u!61 &1524828221905638327
 BoxCollider2D:
   m_ObjectHideFlags: 0
