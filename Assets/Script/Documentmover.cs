@@ -6,9 +6,8 @@ public class DocumentMover : MonoBehaviour
     public float maxX = 5f; // Maximum X coordinate of the bounds
     public float minY = -5f; // Minimum Y coordinate of the bounds
     public float maxY = 5f; // Maximum Y coordinate of the bounds
+    public float speed = 0.5f; // Speed of movement, can be changed in the Inspector
 
-    //private float radius = 0.8f;
-    private float speed = 0.5f;
     private Vector2 baseStartPosition;
     private Vector2 destination;
     private Vector2 start;
@@ -16,6 +15,8 @@ public class DocumentMover : MonoBehaviour
 
     private float rotOffset = 90f;
     private float rotationSpeed = 3f;
+
+    private bool isMoving = true; // Flag to control movement
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class DocumentMover : MonoBehaviour
 
     private void Update()
     {
+        if (!isMoving) return; // If not moving, return without updating
+
         bool reached = false;
         progress += speed * Time.deltaTime;
 
@@ -68,5 +71,10 @@ public class DocumentMover : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void OnMouseDown()
+    {
+        isMoving = !isMoving;
     }
 }

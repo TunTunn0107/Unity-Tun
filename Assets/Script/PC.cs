@@ -26,6 +26,7 @@ public class PC : MonoBehaviour
             if (documentManager != null && documentManager.AreAllDocumentsCollected())
             {
                 SceneManager.LoadScene(nextSceneName);
+                DontDestroyOnLoad(gameObject);
                 isNotified = true; // Set isNotified to true when all documents are collected
             }
         }
