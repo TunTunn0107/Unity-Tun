@@ -11,6 +11,7 @@ TagManager:
   - TargetObject
   - Exit
   - BlueDocument
+  - Fix
   layers:
   - Default
   - TransparentFX
