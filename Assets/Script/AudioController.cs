@@ -13,6 +13,7 @@ public class AudioController : MonoBehaviour
         if (audioClip != null)
         {
             audioSource.clip = audioClip;
+            audioSource.loop = true; // Set loop to true to make it loop
             audioSource.Play();
         }
         else
