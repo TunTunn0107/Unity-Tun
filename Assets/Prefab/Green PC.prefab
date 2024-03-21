@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2505974030420738986}
   - component: {fileID: 3472752704433353606}
   - component: {fileID: 8524183653399408366}
-  - component: {fileID: 1733130119516293869}
   m_Layer: 0
   m_Name: Green PC
   m_TagString: Untagged
@@ -131,18 +130,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.72, y: 2.79}
   m_EdgeRadius: 0
---- !u!114 &1733130119516293869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404788985688470531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf745c7e5d6da54cb6f75bedf57e03d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSceneName: Green_PC_Screen
-  isPCInterracted: 0
-  isNotified: 0

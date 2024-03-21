@@ -8,7 +8,7 @@ public class DocumentMover : MonoBehaviour
     public float maxY = 5f; // Maximum Y coordinate of the bounds
     public float speed = 0.5f; // Speed of movement, can be changed in the Inspector
     public float rotationSpeed = 3f; // Speed of rotation, can be changed in the Inspector
-    public Sprite newSprite; // New sprite to set when object is dragged into another object
+    //public Sprite newSprite; // New sprite to set when object is dragged into another object
     public GameObject targetObject; // Reference to the target object
 
     private Vector2 destination;
