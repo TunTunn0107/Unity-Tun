@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LV0.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/New Game.unity
+    guid: 458ec6e66540b124e9b5fed389730006
   - enabled: 1
     path: Assets/Scenes/LV1.unity
     guid: a7e94bfaace643c429b40882482b5657
@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Green PC.unity
     guid: 5542a45483d45ed44a7356858d230155
   - enabled: 1
-    path: Assets/Scenes/LV3.unity
-    guid: 188feed0bac2b97489b6836aa464aec7
-  - enabled: 1
     path: Assets/Scenes/Blue PC.unity
     guid: 13abedfa365a228499a92956b872bfa0
+  - enabled: 1
+    path: Assets/Scenes/LV3.unity
+    guid: 188feed0bac2b97489b6836aa464aec7
   - enabled: 1
     path: Assets/Scenes/End Game.unity
     guid: 39efec616da970544a254e3bd1966601
