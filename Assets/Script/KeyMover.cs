@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DocumentMover : MonoBehaviour
+public class KeyMover : MonoBehaviour
 {
     public float minX = -5f; // Minimum X coordinate of the bounds
     public float maxX = 5f; // Maximum X coordinate of the bounds
@@ -8,14 +8,12 @@ public class DocumentMover : MonoBehaviour
     public float maxY = 5f; // Maximum Y coordinate of the bounds
     public float speed = 0.5f; // Speed of movement, can be changed in the Inspector
     public float rotationSpeed = 3f; // Speed of rotation, can be changed in the Inspector
-    //public Sprite newSprite; // New sprite to set when object is dragged into another object
     public GameObject targetObject; // Reference to the target object
 
     private Vector2 destination;
     private Vector2 start;
     private float progress = 0.0f;
     private float rotOffset = 90f;
-    private bool isDragging = false; // Flag to control dragging state
 
     private void Start()
     {
@@ -26,8 +24,6 @@ public class DocumentMover : MonoBehaviour
 
     private void Update()
     {
-        if (isDragging) return; // If dragging, return without updating
-
         MoveAndRotate();
     }
 
@@ -66,43 +62,22 @@ public class DocumentMover : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
     }
 
-    private void OnMouseDown()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        isDragging = true;
-    }
-
-    private void OnMouseDrag()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
-    }
-
-    private void OnMouseUp()
-    {
-        isDragging = false;
-        // Check for collision with target object after releasing the mouse
-        Collider2D[] colliders = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        foreach (Collider2D collider in colliders)
+        if (other.CompareTag("TargetObject"))
         {
-            if (collider.gameObject.CompareTag("TargetObject"))
+            TargetObject target = other.GetComponent<TargetObject>();
+            if (target != null)
             {
-                TargetObject target = collider.gameObject.GetComponent<TargetObject>();
-                if (target != null)
-                {
-                    target.ReceiveDocument();
-                    Destroy(gameObject); // Destroy the document object
-                }
-                 break;
+                target.ReceiveDocument();
+                Destroy(gameObject); // Destroy the document object
             }
         }
-
-        // Ensure the document returns within bounds after being dragged
-        EnsureWithinBounds();
     }
 
     private void EnsureWithinBounds()
     {
-        // Ensure the document stays within the specified bounds after being released
+        // Ensure the key stays within the specified bounds after being released
         Vector3 newPosition = transform.position;
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);

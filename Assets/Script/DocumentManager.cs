@@ -1,19 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DocumentManager : MonoBehaviour
 {
-    public int requiredDocuments;
-    private int collectedDocuments;
+    public List<string> requiredDocuments;
+    private HashSet<string> collectedDocuments = new HashSet<string>();
 
-    public void CollectDocument()
+    // Call this method when a document is collected
+    public void CollectDocument(string documentID)
     {
-        collectedDocuments++;
+        if (requiredDocuments.Contains(documentID))
+        {
+            collectedDocuments.Add(documentID);
+        }
     }
 
+    // Check if all required documents have been collected
     public bool AreAllDocumentsCollected()
     {
-        return collectedDocuments >= requiredDocuments;
+        return collectedDocuments.SetEquals(requiredDocuments);
     }
 }

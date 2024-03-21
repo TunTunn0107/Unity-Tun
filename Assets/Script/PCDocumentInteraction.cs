@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PCDocumentInteraction : MonoBehaviour
 {
     public string nextSceneName;
-    public CollectDocument[] collectibleDocuments;
+
     public bool isPCInterracted;
     public bool isNotified; 
 
@@ -25,13 +23,13 @@ public class PCDocumentInteraction : MonoBehaviour
             DocumentManager documentManager = FindObjectOfType<DocumentManager>();
             if (documentManager != null && documentManager.AreAllDocumentsCollected())
             {
-                SceneManager.LoadScene(nextSceneName);
-                DontDestroyOnLoad(gameObject);
+                SceneManager.LoadScene(nextSceneName); // Load the next scene
+                DontDestroyOnLoad(gameObject); // Keep this game object across scenes
                 isNotified = true; 
             }
             else
             {
-                isNotified = false; // Set isNotified to false if not all documents are collected
+                isNotified = false; // Not all documents are collected, so don't proceed to the next scene
             }
         }
     }

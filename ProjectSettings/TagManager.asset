@@ -8,6 +8,10 @@ TagManager:
   - Obstacle
   - Document
   - Notification_Point
+  - TargetObject
+  - Exit
+  - BlueDocument
+  - Fix
   layers:
   - Default
   - TransparentFX
